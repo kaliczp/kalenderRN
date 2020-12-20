@@ -98,7 +98,7 @@
 
 \newcommand*\setup[1]{\pgfqkeys{/RN}{#1}}
 
-\PassOptionsToPackage{a4paper}{geometry}
+\PassOptionsToPackage{landscape, paperwidth=400mm, paperheight=609mm, margin=5mm, headheight = 15 mm, top = 20 mm, nofoot}{geometry}
 \PassOptionsToPackage{svgnames}{xcolor}
 
 \ifRN@XeOrLua
@@ -155,17 +155,17 @@
   \@tempcnta=\RN@calheight
   \divide\@tempcnta by \@M %
   \RN@yunit=\@tempcnta sp %                 0.05974pt (a4)
-  \RN@daywidth=1515\RN@xunit%                    45mm (a4)
-  \RN@daysep=118\RN@xunit   %                   3.5mm (a4)
-  \RN@dayheight=192\RN@xunit%                   5.7mm (a4)
-  \RN@setFont{RN@dayFont}{134}%                   8pt (a4)     
-  \RN@setFont{RN@dayNbFont}{167}%                10pt (a4)
-  \RN@setFont{RN@eventFont}{134}%                 8pt (a4)
-  \RN@setFont[\normalfont]{RN@normalFont}{167}%  10pt (a4)
-  \RN@setFont{RN@weekNbFont}{134}%                8pt (a4)
-  \RN@setFont[\bfseries]{RN@monthFont}{167}%     10pt (a4)
-  \RN@setFont[\bfseries]{RN@titleFont}{666}%     40pt (a4)
-  \RN@setFont[\bfseries]{RN@yearFont}{1000}%     60pt (a4)
+  \RN@daywidth=780\RN@xunit%                    45mm (a4)
+  \RN@daysep=40\RN@xunit   %                   3.5mm (a4)
+  \RN@dayheight=195\RN@xunit%                   5.7mm (a4)
+  \RN@setFont{RN@dayFont}{80}%                   8pt (a4)
+  \RN@setFont{RN@dayNbFont}{80}%                10pt (a4)
+  \RN@setFont{RN@eventFont}{60}%                 8pt (a4)
+  \RN@setFont[\normalfont]{RN@normalFont}{80}%  10pt (a4)
+  \RN@setFont{RN@weekNbFont}{80}%                8pt (a4)
+  \RN@setFont[\bfseries]{RN@monthFont}{150}%     10pt (a4)
+  \RN@setFont[\bfseries]{RN@titleFont}{250}%     40pt (a4)
+  \RN@setFont[\bfseries]{RN@yearFont}{250}%     60pt (a4)
   \RN@normalFont
   \settowidth\@tempdima{\RN@formatDayNb{99}\RN@formatDay{0}}%
   \RN@eventwidthL=\dimexpr\RN@daywidth-\@tempdima
@@ -195,7 +195,7 @@
   }}%
 }
 \newcommand*\RN@formatDayNb[1]{%
-  \RN@dayNbFont#1\hspace{50\RN@xunit}%
+  \RN@dayNbFont#1\hspace{10\RN@xunit}%
 }
 \newcommand*\RN@formatDay[1]{%
   \RN@dayFont\pgfcalendarweekdayshortname{#1}%
@@ -298,7 +298,7 @@
 \newcommand\RN@makeKalender[2]{%
   \sbox\RN@tempbox{%
     \begin{tikzpicture}[every day/.style={anchor=north}]%
-      \calendar[dates=#1 to #2,name=cal,day text={\%d=},%day yshift=3em,%  ????
+      \calendar[dates=#1 to #2,name=cal,day text={\%d=}, day yshift=0.5en,%  ????
         day code={%
           \node[name=\pgfcalendarsuggestedname,every day,%
           shape=rectangle,minimum height=\RN@dayheight,%
