@@ -147,8 +147,8 @@
   \colorlet{medium}{dark!35}
   \colorlet{bright}{dark!20}
   \colorlet{period}{gray!30}
-  \RN@calwidth=\ifRN@print\paperheight\else\paperwidth\fi
-  \RN@calheight=\ifRN@print\paperwidth\else\paperheight\fi 
+  \RN@calwidth=\paperwidth
+  \RN@calheight=\paperheight
   \@tempcnta=\RN@calwidth
   \divide\@tempcnta by \@M %
   \RN@xunit=\@tempcnta sp %                  0.0845pt (a4)
@@ -278,7 +278,7 @@
     }%
     \pgfcalendarifdate{#1}{at most=06-last}% first half-year?
       {\expandafter\g@addto@macro\expandafter\RN@events@I\expandafter{\@tempa}}%
-      {\expandafter\g@addto@macro\expandafter\RN@events@II\expandafter{\@tempa}}%
+      {\expandafter\g@addto@macro\expandafter\RN@events@I\expandafter{\@tempa}}%
   }{%
     \expandafter\protected@xdef\csname event@#1\endcsname{%
       #2, \csname event@#1\endcsname}%
@@ -334,7 +334,7 @@
           \pgftransformyshift{-\pgfcalendarcurrentday\RN@dayheight}%
         }%
       ];%
-      \pgfcalendarifdate{#1}{at most=06-last}{\RN@events@I}{\RN@events@II}%
+      \pgfcalendarifdate{#1}{at most=06-last}{\RN@events@I}{\RN@events@I}%
     \end{tikzpicture}%
   }%
   \parbox[c][\RN@calheight]{\RN@calwidth}{%
@@ -364,18 +364,11 @@
     \def\do##1{\InputIfFileExists{##1.events}{}{}}%
     \expandafter\docsvlist\expandafter{\RN@events@files}%
   \endgroup
-  \sbox{\RN@pageI}{\RN@makeKalender{\RN@year-01-01}{\RN@year-06-30}}%
-  \sbox{\RN@pageII}{\RN@makeKalender{\RN@year-07-01}{\RN@year-12-31}}%
+  \sbox{\RN@pageI}{\RN@makeKalender{\RN@year-01-01}{\RN@year-12-31}}%
   \ifRN@print
     \rotatebox[origin=c]{90}{\usebox\RN@pageI}%
   \else
     \usebox\RN@pageI
-  \fi
-  \newpage
-  \ifRN@print
-    \rotatebox[origin=c]{-90}{\usebox\RN@pageII}%
-  \else
-    \usebox\RN@pageII
   \fi
 }
 
